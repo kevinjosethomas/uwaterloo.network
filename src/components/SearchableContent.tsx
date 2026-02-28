@@ -154,77 +154,81 @@ export default function SearchableContent({ members, connections }: SearchableCo
             </div>
 
             <div className="graph-section">
-                <div className="search-bar-container">
-                    <Search size={18} />
-                    <input
-                        type="text"
-                        placeholder="search members..."
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="search-input"
-                    />
-                    {searchQuery && (
-                        <button
-                            onClick={() => setSearchQuery('')}
-                            className="search-clear-btn"
-                        >
-                            Clear
-                        </button>
-                    )}
-                    <button
-                        className="filters-toggle"
-                        onClick={() => setShowFilters(prev => !prev)}
-                    >
-                        <span>filters</span>
-                        {hasActiveFilters && (
-                            <span className="filter-count">
-                                {activeRoles.size + activeVerticals.size}
-                            </span>
+                <div className="search-wrapper">
+                    <div className="search-bar-container">
+                        <Search size={18} />
+                        <input
+                            type="text"
+                            placeholder="search members..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="search-input"
+                        />
+                        {searchQuery && (
+                            <button
+                                onClick={() => setSearchQuery('')}
+                                className="search-clear-btn"
+                            >
+                                Clear
+                            </button>
                         )}
-                        {showFilters ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-                    </button>
-                </div>
+                        <button
+                            className="filters-toggle"
+                            onClick={() => setShowFilters(prev => !prev)}
+                        >
+                            <span>filters</span>
+                            {hasActiveFilters && (
+                                <span className="filter-count">
+                                    {activeRoles.size + activeVerticals.size}
+                                </span>
+                            )}
+                            {showFilters ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+                        </button>
+                    </div>
 
-                {showFilters && (
-                    <div className="filters-panel">
-                        <div className="filter-group">
-                            <span className="filter-label">roles</span>
-                            <div className="filter-tags">
-                                {ROLE_OPTIONS.map(role => (
-                                    <button
-                                        key={role}
-                                        className={`filter-tag ${activeRoles.has(role) ? 'filter-tag-active' : ''}`}
-                                        onClick={() => toggleRole(role)}
-                                    >
-                                        {role}
-                                    </button>
-                                ))}
+                    {showFilters && (
+                        <div className="filters-panel">
+                            <div className="filter-group">
+                                <span className="filter-label">roles</span>
+                                <div className="filter-tags">
+                                    {ROLE_OPTIONS.map(role => (
+                                        <button
+                                            key={role}
+                                            className={`filter-tag ${activeRoles.has(role) ? 'filter-tag-active' : ''}`}
+                                            onClick={() => toggleRole(role)}
+                                        >
+                                            {role}
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
 
-                        <div className="filter-group">
-                            <span className="filter-label">verticals</span>
-                            <div className="filter-tags">
-                                {VERTICAL_OPTIONS.map(vertical => (
-                                    <button
-                                        key={vertical}
-                                        className={`filter-tag ${activeVerticals.has(vertical) ? 'filter-tag-active' : ''}`}
-                                        onClick={() => toggleVertical(vertical)}
-                                    >
-                                        {vertical}
-                                    </button>
-                                ))}
+                            <div className="filter-group">
+                                <span className="filter-label">verticals</span>
+                                <div className="filter-tags">
+                                    {VERTICAL_OPTIONS.map(vertical => (
+                                        <button
+                                            key={vertical}
+                                            className={`filter-tag ${activeVerticals.has(vertical) ? 'filter-tag-active' : ''}`}
+                                            onClick={() => toggleVertical(vertical)}
+                                        >
+                                            {vertical}
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
 
-                        {hasActiveFilters && (
-                            <button className="clear-filters-btn" onClick={clearAllFilters}>
+                            <button 
+                                className={`clear-filters-btn ${!hasActiveFilters ? 'clear-filters-btn-disabled' : ''}`} 
+                                onClick={clearAllFilters}
+                                disabled={!hasActiveFilters}
+                            >
                                 <X size={14} />
                                 clear all filters
                             </button>
-                        )}
-                    </div>
-                )}
+                        </div>
+                    )}
+                </div>
 
                 <NetworkGraph 
                     members={members} 

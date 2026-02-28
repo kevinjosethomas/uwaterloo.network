@@ -161,6 +161,11 @@ a {
 }
 
 /* Search */
+.search-wrapper {
+  position: relative;
+  z-index: 10;
+}
+
 .search-bar-container {
   display: flex;
   align-items: center;
@@ -169,7 +174,6 @@ a {
   background: var(--input-bg);
   border-radius: 8px;
   border: 1px solid var(--border);
-  margin-bottom: 1rem;
   color: var(--secondary);
 }
 
@@ -206,6 +210,11 @@ a {
   font-size: 0.9rem;
   color: var(--secondary);
   font-weight: 500;
+  min-height: 1.4em;
+}
+
+.search-results-placeholder {
+  visibility: hidden;
 }
 
 /* Filters */
@@ -245,6 +254,10 @@ a {
 }
 
 .filters-panel {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -252,6 +265,12 @@ a {
   background: var(--input-bg);
   border: 1px solid var(--border);
   border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 20;
+}
+
+[data-theme='dark'] .filters-panel {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .filter-group {
@@ -321,8 +340,13 @@ a {
   width: fit-content;
 }
 
-.clear-filters-btn:hover {
+.clear-filters-btn:hover:not(:disabled) {
   color: var(--foreground);
+}
+
+.clear-filters-btn-disabled {
+  opacity: 0.4;
+  cursor: default;
 }
 
 /* Members Table */

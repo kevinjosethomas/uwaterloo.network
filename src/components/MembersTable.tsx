@@ -23,13 +23,15 @@ export default function MembersTable({ members, searchQuery, membersWithoutEmbed
 
     return (
         <div className="members-table-container">
-            {searchQuery && (
-                <div className="search-results-info">
-                    {members.length === 0 
+            <div className="search-results-info">
+                {searchQuery ? (
+                    members.length === 0 
                         ? `No results found for "${searchQuery}"`
-                        : `Found ${members.length} member${members.length !== 1 ? 's' : ''}`}
-                </div>
-            )}
+                        : `Found ${members.length} member${members.length !== 1 ? 's' : ''}`
+                ) : (
+                    <span className="search-results-placeholder">&nbsp;</span>
+                )}
+            </div>
             <table className="members-table">
                 <thead>
                     <tr>
