@@ -31,8 +31,6 @@
  * 3. Set profilePic to: "/photos/your-name.jpg"
  */
 
-import { errorToJSON } from "next/dist/server/render";
-
 export interface Member {
   id: string;
   name: string;
@@ -327,9 +325,9 @@ export const members: Member[] = [
     program: "Computer Science",
     year: "2030",
     // options: engineering, design, product, growth, ai/ml, research, hardware, quant, software, finance, vc
-    roles: [engineering, product, design, software],
+    roles: ["engineering", "product", "design", "software"],
     // options: fintech, ai, climate, healthcare, edtech, marketplaces, robotics, defense, hard tech, saas, consumer, creator tools
-    verticals: [ai, saas, consumer],
+    verticals: ["ai", "saas", "consumer"],
     profilePic: "/photos/austin-jian.jpg",
     twitter: "https://x.com/austinjian_",
     linkedin: "https://www.linkedin.com/in/austin-jian",
